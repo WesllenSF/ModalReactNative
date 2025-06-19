@@ -1,14 +1,16 @@
-import {Alert, Modal, StyleSheet, Text, View, TouchableOpacity, Image} from 'react-native';
+import {Alert, Modal, StyleSheet, Text, View, TouchableOpacity, Image,ImageSourcePropType} from 'react-native';
 import React, {useState} from 'react';
+
 interface propsProduto{
     nome:string;
     categoria:string;
     preco:string;
     descricao:string;
     marca:string;
+    imag: ImageSourcePropType;
 }
 
-export default function Produtos({nome, categoria, preco, descricao, marca}:propsProduto){
+export default function Produtos({nome, categoria, preco, descricao, marca, imag}:propsProduto){
     const [modalVisible, setModalVisible] = useState(false);
     return (
       
@@ -25,7 +27,9 @@ export default function Produtos({nome, categoria, preco, descricao, marca}:prop
                             }}>
                             <View style={styles.centeredView}>
                               <View style={styles.modalView}>
-
+                                  <View style={styles.imag}>
+                                    <Image style={styles.imagCard} source={imag}/>
+                                  </View>
                                 <Text style={styles.nome}>Nome: {nome}</Text>
                                 <Text style={styles.categoria}>Categoria: {categoria} </Text>
                                 <Text style={styles.categoria}>Marca: {marca}</Text>
@@ -48,7 +52,7 @@ export default function Produtos({nome, categoria, preco, descricao, marca}:prop
                 >
                     {/* Chama exibe os conteudos */}
                       <View style={styles.cartao}>
-                          <Image />
+                          <Image style={styles.imag} source={imag}/>
                           <Text style={styles.nome}>Nome: {nome} </Text>
                           <Text style={styles.preco}>Categoria: {categoria}</Text>
                           <Text style={styles.preco}>Preço: {preco}</Text>
@@ -125,5 +129,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 15,
     color: 'white',
+  },
+  imag: {
+    height: 200,
+    width: 200,
+    margin: 'auto',
+  },
+  imagCard: {
+    height: 150,
+    width: 150,
   },
 });
